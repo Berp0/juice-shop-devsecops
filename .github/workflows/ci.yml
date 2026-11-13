@@ -200,7 +200,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           files: frontend-lcov.info server-lcov.info api-lcov.info
   custom-config-test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [24]
     steps:
       - name: "Check out Git repository"
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
